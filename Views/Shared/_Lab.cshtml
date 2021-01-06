@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المركز الطبي العالمي | @ViewBag.Title</title>
+    <link rel="icon" type="image/png" sizes="96x96" href="~/Content/favicon/favicon-96x96.png">
+    <link href="https://fonts.googleapis.com/css?family=Almarai:400,700&display=swap" rel="stylesheet">
+    <link href="~/DataTables/datatables.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet" />
+
+    @Styles.Render("~/bundles/css")
+    @Styles.Render("~/bundles/alertfiyCss")
+    @RenderSection("Styles", required: false)
+</head>
+<body dir="rtl" style="text-align:right">
+    <nav dir="ltr" class="navbar navbar-expand-md navbar-dark bg-primary sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="~/images/IMC.png" height="75" width="75" class="d-inline-block align-top" alt="logo image">
+            </a>
+
+            <div dir="rtl" class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        @Html.ActionLink("الصحفة الرئيسية", "Index", "Labs", new { }, new { @class = "nav-link" })
+                    </li>
+                    @*<li class="nav-item">
+                        @Html.ActionLink("الطلبات", "Requests", "Labs", new { }, new { @class = "nav-link" })
+                    </li>*@
+                    <li class="nav-item">
+                        @Html.ActionLink("الخروج", "Logout", "Login", null, new { @class = "nav-link " })
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="body-content container-fluid" style="height:100%">
+        @RenderBody()
+    </div>
+    @{
+        Html.RenderPartial("_Footer");
+    }
+    @Scripts.Render("~/bundles/jQuery")
+    <script src="~/DataTables/datatables.min.js"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Content/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    @Scripts.Render("~/bundles/notify")
+    @Scripts.Render("~/bundles/alertfiyJs")
+    <script type="text/javascript">
+        alertify.defaults.glossary.title = 'تأكيد ';
+        alertify.defaults.glossary.ok = 'نعم';
+        alertify.defaults.glossary.cancel = 'لا';
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

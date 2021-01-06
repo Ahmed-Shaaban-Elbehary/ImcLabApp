@@ -1,0 +1,64 @@
+﻿@model ImcLabApp.Models.Patients
+
+@{
+    if (@Session["uId"] == null)
+    {
+        Response.Redirect("/Login/login");
+    }
+    Layout = null;
+}
+
+<section dir="rtl">
+    @using (Html.BeginForm("AddOrEdit", "Tumors", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.HiddenFor(model => model.Id)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.medicalNumber)
+            </div>
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.medicalNumber, new { htmlAttributes = new { @class = "form-control", @type = "number", placeholder = "أدخل الرقم الطبي " } })
+                @Html.ValidationMessageFor(model => model.medicalNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.NationalID)
+            </div>
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.NationalID, new { htmlAttributes = new { @class = "form-control", @type = "number", placeholder = "أدخل الرقم القومي / الباسبور " } })
+                @Html.ValidationMessageFor(model => model.NationalID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.userName)
+            </div>
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.userName, new { htmlAttributes = new { @class = "form-control", placeholder = "أدخل إسم المريض" } })
+                @Html.ValidationMessageFor(model => model.userName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.phoneNumber)
+            </div>
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.phoneNumber, new { htmlAttributes = new { @class = "form-control", @type = "number", maxlength = 11, placeholder = "أدخل رقم التليفون" } })
+                @Html.ValidationMessageFor(model => model.phoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-12">
+                <input type="submit" value="إضافة" class="btn btn-success" />
+                <input type="reset" value="إعادة" class="btn btn-light" />
+            </div>
+        </div>
+    </div>
+    }
+</section>

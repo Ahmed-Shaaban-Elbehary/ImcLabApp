@@ -1,0 +1,56 @@
+﻿@model ImcLabApp.Models.Users
+
+@{
+    Layout = null;
+}
+
+<div class="col-md-12">
+    @using (Html.BeginForm("AddOrEdit", "adminPanel", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+    {
+        @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.HiddenFor(model => model.Id)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label" })
+
+            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })
+
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Departments, htmlAttributes: new { @class = "control-label" })
+            <div class="form-check">
+                @Html.RadioButtonFor(m => m.Departments, "إشعة", new { htmlAttributes = new { @class = "form-check-input" } }) قسم الإشعة
+            </div>
+            <div class="form-check">
+                @Html.RadioButtonFor(m => m.Departments, "معمل", new { htmlAttributes = new { @class = "form-check-input" } }) قسم المعمل
+            </div>
+            <div class="form-check">
+                @Html.RadioButtonFor(m => m.Departments, "أورام", new { htmlAttributes = new { @class = "form-check-input" } }) قسم الأورام
+            </div>
+            <div class="form-check">
+                @Html.RadioButtonFor(m => m.Departments, "مدير", new { htmlAttributes = new { @class = "form-check-input" } }) إدارة التطبيق
+                <small id="Departments" class="form-text text-muted">من المفترض ان يكون المدير مختص من قسم نظم المعلومات</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="حفظ" class="btn btn-outline-primary" />
+            </div>
+        </div>
+    </div>
+    }
+</div>
+

@@ -1,0 +1,136 @@
+﻿@{
+    ViewBag.Title = "أرشيف المعامل";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+@section Styles{
+    <style>
+        .arch_header {
+            margin-bottom: 30px;
+        }
+
+        .display-5 {
+            font-size: 40px;
+            padding-bottom: 10px;
+        }
+
+        .arch_details {
+            margin: 0;
+        }
+    </style>
+}
+<div class="arch_header">
+    <strong class="display-5" style="font-weight:400; display:block">أرشيف ملفات المرضى للمعامل</strong>
+    <p class="arch_details" style="font-weight:900">
+        <i class="ion-alert-circled text-warning"></i>
+        أرشيف لملفات المرضى , المدير فقط  يمكنة حذف الملفات
+        <span class="text-danger">نهائياً.</span>
+    </p>
+    <p class="arch_details" style="font-weight:900">يمكن للمستخدم إسترجاع ملفات المريض. </p>
+</div>
+
+<div class="pb-4">
+    @Html.TextBox("medicalNumberSearch", "", new { @class = "form-control col-4 m-auto text-center", placeholder = "بحث بالرقم الطبي", type = "number" })
+</div>
+
+<table id="myTable" dir="rtl" class="table text-center">
+    <thead>
+        <tr class="bg-primary text-white ">
+            <th>الرقم الطبي</th>
+            <th>إسم المريض</th>
+            <th>إسم التحليل</th>
+            <th>تاريخ الإضافة </th>
+            <th>تاريخ الحذف</th>
+            <th>الحذف</th>
+            <th> </th>
+        </tr>
+    </thead>
+    <tbody id="myTbody">
+    </tbody>
+</table>
+
+@section Scripts{
+    <script>
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Radios_BackUp/Get_Backup",
+                success: function (response) {
+                    $.each(response, function (k, v) {
+                        $("#myTbody").append(`
+                                    <tr id=row`+ v.Id + `>
+                                        <td>`+ v.PatientMedicalNumber + `</td>
+                                        <td>`+ v.PatientName + `</td>
+                                        <td>`+ v.testName + `</td>
+                                        <td>`+ v.dateWasAdded + `</td>
+                                        <td>`+ v.Datetime + `</td>
+                                        <td>`+ v.UserName + `</td>
+                                        <td>
+                                            <button onclick="Delete(id=`+ v.Id + `,fileName='` + v.Name + `')" class="btn btn-sm btn-danger">حذف نهائى</button>
+                                            <button onclick="Restor(id=`+ v.Id + `,fileName='` + v.Name + `')" class="btn btn-sm btn-success">إسترجاع</button>
+                                        </td>
+                                    </tr>
+                                `);
+                    });
+                }
+            });
+
+            $("#medicalNumberSearch").on("keyup", function () {
+                var value = $(this).val();
+                $("#myTbody tr").filter(function () {
+                    $(this).toggle($(this).text().indexOf(value) > -1)
+                });
+            });
+        });
+
+
+        function Delete(id, fileName) {
+            alertify.confirm(" هل أنت متأكد من حذف الملف نهائياً ؟ ", function (e) {
+                if (e) {
+                    $.ajax({
+                        url: "/Radios_BackUp/Deleter",
+                        data: {
+                            fileId: id,
+                            FileName: fileName
+                        },
+                        success: function (response) {
+                            if (response == "success") {
+                                $("#row" + id).remove();
+                                $.notify("تم الحذف بنجاح",{ position:"top center" },"success");
+                            } else if(response == "existInPatientTable") {
+                                $.notify("هذا الملف لدى المريض لا يمكنك الحذف", { position: "top center", className: "error" });
+                            }else {
+                                $.notify("خطأ", { position: "top center", className: "error" });
+                            }
+
+                        }
+                    });
+                };
+            });
+        };
+
+        function Restor(id, fileName) {
+            alertify.confirm("هل تريد إسترجاع هذا الملف ؟", function (e) {
+                if (e) {
+                    $.ajax({
+                        url: "/Radios_BackUp/Restor",
+                        data: {
+                            fileId: id,
+                            FileName: fileName
+                        },
+                        success: function (response) {
+                            if (response == "done") {
+                                $.notify("تم الإسترجاع بنجاح",{ position:"top center" }, "success");
+                            } else if (response == "exist") {
+                                $.notify("موجود بالفعل",{ position:"top center" }, "warn");
+                            } else {
+                                $.notify("خطأ",{ position:"top center" }, "error");
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+
+    </script>
+}

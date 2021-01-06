@@ -1,0 +1,501 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{82A49771-3B07-417A-B340-4E98845F8143}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ImcLabApp</RootNamespace>
+    <AssemblyName>ImcLabApp</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44368</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.4</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="alertifyjs\alertify.min.js" />
+    <Content Include="alertifyjs\css\alertify.rtl.min.css" />
+    <Content Include="alertifyjs\css\themes\default.rtl.min.css" />
+    <Content Include="Content\bootstrap-Lumen.min.css" />
+    <Content Include="Content\favicon\favicon-96x96.png" />
+    <Content Include="Content\ionicons-2.0.1\css\ionicons.min.css" />
+    <Content Include="Content\ionicons-2.0.1\fonts\ionicons.svg" />
+    <Content Include="Content\jquery-ui-1.12.1\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\jquery-ui-1.12.1\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\jquery-ui-1.12.1\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\jquery-ui-1.12.1\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\jquery-ui-1.12.1\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\jquery-ui-1.12.1\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\jquery-ui-1.12.1\jquery-ui.min.css" />
+    <Content Include="Content\jquery-ui-1.12.1\jquery-ui.min.js" />
+    <Content Include="DataTables\DataTables-1.10.20\css\dataTables.bootstrap.css" />
+    <Content Include="DataTables\DataTables-1.10.20\css\dataTables.bootstrap.min.css" />
+    <Content Include="DataTables\DataTables-1.10.20\css\dataTables.bootstrap4.css" />
+    <Content Include="DataTables\DataTables-1.10.20\css\dataTables.bootstrap4.min.css" />
+    <Content Include="DataTables\DataTables-1.10.20\css\dataTables.foundation.css" />
+    <Content Include="DataTables\DataTables-1.10.20\css\dataTables.foundation.min.css" />
+    <Content Include="DataTables\DataTables-1.10.20\css\dataTables.jqueryui.css" />
+    <Content Include="DataTables\DataTables-1.10.20\css\dataTables.jqueryui.min.css" />
+    <Content Include="DataTables\DataTables-1.10.20\css\dataTables.semanticui.css" />
+    <Content Include="DataTables\DataTables-1.10.20\css\dataTables.semanticui.min.css" />
+    <Content Include="DataTables\DataTables-1.10.20\css\jquery.dataTables.css" />
+    <Content Include="DataTables\DataTables-1.10.20\css\jquery.dataTables.min.css" />
+    <Content Include="DataTables\DataTables-1.10.20\images\sort_asc.png" />
+    <Content Include="DataTables\DataTables-1.10.20\images\sort_asc_disabled.png" />
+    <Content Include="DataTables\DataTables-1.10.20\images\sort_both.png" />
+    <Content Include="DataTables\DataTables-1.10.20\images\sort_desc.png" />
+    <Content Include="DataTables\DataTables-1.10.20\images\sort_desc_disabled.png" />
+    <Content Include="DataTables\DataTables-1.10.20\js\dataTables.bootstrap.js" />
+    <Content Include="DataTables\DataTables-1.10.20\js\dataTables.bootstrap.min.js" />
+    <Content Include="DataTables\DataTables-1.10.20\js\dataTables.bootstrap4.js" />
+    <Content Include="DataTables\DataTables-1.10.20\js\dataTables.bootstrap4.min.js" />
+    <Content Include="DataTables\DataTables-1.10.20\js\dataTables.foundation.js" />
+    <Content Include="DataTables\DataTables-1.10.20\js\dataTables.foundation.min.js" />
+    <Content Include="DataTables\DataTables-1.10.20\js\dataTables.jqueryui.js" />
+    <Content Include="DataTables\DataTables-1.10.20\js\dataTables.jqueryui.min.js" />
+    <Content Include="DataTables\DataTables-1.10.20\js\dataTables.semanticui.js" />
+    <Content Include="DataTables\DataTables-1.10.20\js\dataTables.semanticui.min.js" />
+    <Content Include="DataTables\DataTables-1.10.20\js\jquery.dataTables.js" />
+    <Content Include="DataTables\DataTables-1.10.20\js\jquery.dataTables.min.js" />
+    <Content Include="DataTables\datatables.css" />
+    <Content Include="DataTables\datatables.js" />
+    <Content Include="DataTables\datatables.min.css" />
+    <Content Include="DataTables\datatables.min.js" />
+    <Content Include="DataTables\Responsive-2.2.3\css\responsive.bootstrap.css" />
+    <Content Include="DataTables\Responsive-2.2.3\css\responsive.bootstrap.min.css" />
+    <Content Include="DataTables\Responsive-2.2.3\css\responsive.bootstrap4.css" />
+    <Content Include="DataTables\Responsive-2.2.3\css\responsive.bootstrap4.min.css" />
+    <Content Include="DataTables\Responsive-2.2.3\css\responsive.dataTables.css" />
+    <Content Include="DataTables\Responsive-2.2.3\css\responsive.dataTables.min.css" />
+    <Content Include="DataTables\Responsive-2.2.3\css\responsive.foundation.css" />
+    <Content Include="DataTables\Responsive-2.2.3\css\responsive.foundation.min.css" />
+    <Content Include="DataTables\Responsive-2.2.3\css\responsive.jqueryui.css" />
+    <Content Include="DataTables\Responsive-2.2.3\css\responsive.jqueryui.min.css" />
+    <Content Include="DataTables\Responsive-2.2.3\css\responsive.semanticui.css" />
+    <Content Include="DataTables\Responsive-2.2.3\css\responsive.semanticui.min.css" />
+    <Content Include="DataTables\Responsive-2.2.3\js\dataTables.responsive.js" />
+    <Content Include="DataTables\Responsive-2.2.3\js\dataTables.responsive.min.js" />
+    <Content Include="DataTables\Responsive-2.2.3\js\responsive.bootstrap.js" />
+    <Content Include="DataTables\Responsive-2.2.3\js\responsive.bootstrap.min.js" />
+    <Content Include="DataTables\Responsive-2.2.3\js\responsive.bootstrap4.js" />
+    <Content Include="DataTables\Responsive-2.2.3\js\responsive.bootstrap4.min.js" />
+    <Content Include="DataTables\Responsive-2.2.3\js\responsive.foundation.js" />
+    <Content Include="DataTables\Responsive-2.2.3\js\responsive.foundation.min.js" />
+    <Content Include="DataTables\Responsive-2.2.3\js\responsive.jqueryui.js" />
+    <Content Include="DataTables\Responsive-2.2.3\js\responsive.jqueryui.min.js" />
+    <Content Include="DataTables\Responsive-2.2.3\js\responsive.semanticui.js" />
+    <Content Include="DataTables\Responsive-2.2.3\js\responsive.semanticui.min.js" />
+    <Content Include="images\226-2267782_business-users-lock-1-image-business-user-icon.png" />
+    <Content Include="images\A-SJ-min.jpg" />
+    <Content Include="images\doctors-glass-hallway-127873.svg" />
+    <Content Include="images\IMC.png" />
+    <Content Include="Content\site.css" />
+    <Content Include="Global.asax" />
+    <Content Include="images\img_avatar.png" />
+    <Content Include="images\login.svg" />
+    <Content Include="images\path817.png" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\custome.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\notify.min.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\adminPanelController.cs" />
+    <Compile Include="Controllers\Api\CheckPatientsController.cs" />
+    <Compile Include="Controllers\Api\PatientsController.cs" />
+    <Compile Include="Controllers\Api\RegisterationPatientsController.cs" />
+    <Compile Include="Controllers\Api\RequestsController.cs" />
+    <Compile Include="Controllers\BackUpSystem\Lab_BackUpController.cs" />
+    <Compile Include="Controllers\BackUpSystem\Radios_BackUpController.cs" />
+    <Compile Include="Controllers\BackUpSystem\Tumors_BackUpController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\LabsController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\RadiosController.cs" />
+    <Compile Include="Controllers\TumorsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909181658324_InitialDataBase.cs" />
+    <Compile Include="Migrations\201909181658324_InitialDataBase.Designer.cs">
+      <DependentUpon>201909181658324_InitialDataBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909191519342_editTestFieldNameUrlName.cs" />
+    <Compile Include="Migrations\201909191519342_editTestFieldNameUrlName.Designer.cs">
+      <DependentUpon>201909191519342_editTestFieldNameUrlName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909192004022_AddDateTimeToTestsModel.cs" />
+    <Compile Include="Migrations\201909192004022_AddDateTimeToTestsModel.Designer.cs">
+      <DependentUpon>201909192004022_AddDateTimeToTestsModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909201111080_EditeOfphoneNumberFieldInTestModel.cs" />
+    <Compile Include="Migrations\201909201111080_EditeOfphoneNumberFieldInTestModel.Designer.cs">
+      <DependentUpon>201909201111080_EditeOfphoneNumberFieldInTestModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909201345406_AddNewBackUpModelForTesting.cs" />
+    <Compile Include="Migrations\201909201345406_AddNewBackUpModelForTesting.Designer.cs">
+      <DependentUpon>201909201345406_AddNewBackUpModelForTesting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909201409199_AddTimeWasAddedInDbToBackUpTable.cs" />
+    <Compile Include="Migrations\201909201409199_AddTimeWasAddedInDbToBackUpTable.Designer.cs">
+      <DependentUpon>201909201409199_AddTimeWasAddedInDbToBackUpTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909201522301_RemovePatientIdAndAddOtherFields.cs" />
+    <Compile Include="Migrations\201909201522301_RemovePatientIdAndAddOtherFields.Designer.cs">
+      <DependentUpon>201909201522301_RemovePatientIdAndAddOtherFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909201537258_AddingUserNameToBAckUpTable.cs" />
+    <Compile Include="Migrations\201909201537258_AddingUserNameToBAckUpTable.Designer.cs">
+      <DependentUpon>201909201537258_AddingUserNameToBAckUpTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909202018572_convertPatientIdFromRelationalFieldToIntergerField.cs" />
+    <Compile Include="Migrations\201909202018572_convertPatientIdFromRelationalFieldToIntergerField.Designer.cs">
+      <DependentUpon>201909202018572_convertPatientIdFromRelationalFieldToIntergerField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909231617049_addingUserTypeInUsersModel.cs" />
+    <Compile Include="Migrations\201909231617049_addingUserTypeInUsersModel.Designer.cs">
+      <DependentUpon>201909231617049_addingUserTypeInUsersModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910011637065_addDepartmentsInUsers.cs" />
+    <Compile Include="Migrations\201910011637065_addDepartmentsInUsers.Designer.cs">
+      <DependentUpon>201910011637065_addDepartmentsInUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910011935404_CreateTumorsAndRadiosModels.cs" />
+    <Compile Include="Migrations\201910011935404_CreateTumorsAndRadiosModels.Designer.cs">
+      <DependentUpon>201910011935404_CreateTumorsAndRadiosModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910021609529_9861823412354.cs" />
+    <Compile Include="Migrations\201910021609529_9861823412354.Designer.cs">
+      <DependentUpon>201910021609529_9861823412354.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910041503036_CreateThreeBackUpModelForTests.cs" />
+    <Compile Include="Migrations\201910041503036_CreateThreeBackUpModelForTests.Designer.cs">
+      <DependentUpon>201910041503036_CreateThreeBackUpModelForTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910041859479_Removetb_BackUpTests.cs" />
+    <Compile Include="Migrations\201910041859479_Removetb_BackUpTests.Designer.cs">
+      <DependentUpon>201910041859479_Removetb_BackUpTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910051536391_AddNationIDToPatientModel.cs" />
+    <Compile Include="Migrations\201910051536391_AddNationIDToPatientModel.Designer.cs">
+      <DependentUpon>201910051536391_AddNationIDToPatientModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910061051006_RemoveAdminModelAddUserRolesInUserModel.cs" />
+    <Compile Include="Migrations\201910061051006_RemoveAdminModelAddUserRolesInUserModel.Designer.cs">
+      <DependentUpon>201910061051006_RemoveAdminModelAddUserRolesInUserModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910061212392_RemoveUserRoles.cs" />
+    <Compile Include="Migrations\201910061212392_RemoveUserRoles.Designer.cs">
+      <DependentUpon>201910061212392_RemoveUserRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910261152221_CreateRequestTable.cs" />
+    <Compile Include="Migrations\201910261152221_CreateRequestTable.Designer.cs">
+      <DependentUpon>201910261152221_CreateRequestTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910261513292_RequestsTypes.cs" />
+    <Compile Include="Migrations\201910261513292_RequestsTypes.Designer.cs">
+      <DependentUpon>201910261513292_RequestsTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910261647103_RemoveIdDoneField.cs" />
+    <Compile Include="Migrations\201910261647103_RemoveIdDoneField.Designer.cs">
+      <DependentUpon>201910261647103_RemoveIdDoneField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910301459455_CreateBackUpRequestsSystem.cs" />
+    <Compile Include="Migrations\201910301459455_CreateBackUpRequestsSystem.Designer.cs">
+      <DependentUpon>201910301459455_CreateBackUpRequestsSystem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910301519214_EditRequestsbackUpTable.cs" />
+    <Compile Include="Migrations\201910301519214_EditRequestsbackUpTable.Designer.cs">
+      <DependentUpon>201910301519214_EditRequestsbackUpTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AppDbContext.cs" />
+    <Compile Include="Models\ErrorMessages.cs" />
+    <Compile Include="Models\Patients.cs" />
+    <Compile Include="Models\PatientsRegisteration.cs" />
+    <Compile Include="Models\Radios.cs" />
+    <Compile Include="Models\Labs.cs" />
+    <Compile Include="Models\BackUpSystemModels\tb_labsBackUp.cs" />
+    <Compile Include="Models\BackUpSystemModels\tb_radiosBackUp.cs" />
+    <Compile Include="Models\BackUpSystemModels\tb_TumorsBackUp.cs" />
+    <Compile Include="Models\RequestesBackUp.cs" />
+    <Compile Include="Models\Requests.cs" />
+    <Compile Include="Models\Tumors.cs" />
+    <Compile Include="Models\Users.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="Content\ionicons-2.0.1\fonts\ionicons.eot" />
+    <Content Include="Content\ionicons-2.0.1\fonts\ionicons.ttf" />
+    <Content Include="Content\ionicons-2.0.1\fonts\ionicons.woff" />
+    <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Admin.cshtml" />
+    <Content Include="Views\adminPanel\AddOrEdit.cshtml" />
+    <Content Include="Views\adminPanel\Index.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Labs\Index.cshtml" />
+    <Content Include="Views\Labs\AddOrEdit.cshtml" />
+    <Content Include="Views\Labs\patientProfile.cshtml" />
+    <Content Include="Views\Radios\Index.cshtml" />
+    <Content Include="Views\Radios\AddOrEdit.cshtml" />
+    <Content Include="Views\Radios\patientProfile.cshtml" />
+    <Content Include="Views\Tumors\AddOrEdit.cshtml" />
+    <Content Include="Views\Tumors\patientProfile.cshtml" />
+    <Content Include="Views\Tumors\Index.cshtml" />
+    <Content Include="Views\Radios_BackUp\getBackUpTests.cshtml" />
+    <Content Include="Views\Tumors_BackUp\getBackUpTests.cshtml" />
+    <Content Include="Views\adminPanel\Patients.cshtml" />
+    <Content Include="Views\Shared\_LandingPage.cshtml" />
+    <Content Include="Views\Login\login.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <None Include="Properties\PublishProfiles\publishProfile.pubxml" />
+    <Content Include="Views\Lab_BackUp\getBackUpTests.cshtml" />
+    <Content Include="Views\Shared\_Lab.cshtml" />
+    <Content Include="Views\Shared\_Rad.cshtml" />
+    <Content Include="Views\Shared\_Tur.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Uploaded\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201909181658324_InitialDataBase.resx">
+      <DependentUpon>201909181658324_InitialDataBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909191519342_editTestFieldNameUrlName.resx">
+      <DependentUpon>201909191519342_editTestFieldNameUrlName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909192004022_AddDateTimeToTestsModel.resx">
+      <DependentUpon>201909192004022_AddDateTimeToTestsModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909201111080_EditeOfphoneNumberFieldInTestModel.resx">
+      <DependentUpon>201909201111080_EditeOfphoneNumberFieldInTestModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909201345406_AddNewBackUpModelForTesting.resx">
+      <DependentUpon>201909201345406_AddNewBackUpModelForTesting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909201409199_AddTimeWasAddedInDbToBackUpTable.resx">
+      <DependentUpon>201909201409199_AddTimeWasAddedInDbToBackUpTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909201522301_RemovePatientIdAndAddOtherFields.resx">
+      <DependentUpon>201909201522301_RemovePatientIdAndAddOtherFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909201537258_AddingUserNameToBAckUpTable.resx">
+      <DependentUpon>201909201537258_AddingUserNameToBAckUpTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909202018572_convertPatientIdFromRelationalFieldToIntergerField.resx">
+      <DependentUpon>201909202018572_convertPatientIdFromRelationalFieldToIntergerField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909231617049_addingUserTypeInUsersModel.resx">
+      <DependentUpon>201909231617049_addingUserTypeInUsersModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910011637065_addDepartmentsInUsers.resx">
+      <DependentUpon>201910011637065_addDepartmentsInUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910011935404_CreateTumorsAndRadiosModels.resx">
+      <DependentUpon>201910011935404_CreateTumorsAndRadiosModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910021609529_9861823412354.resx">
+      <DependentUpon>201910021609529_9861823412354.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910041503036_CreateThreeBackUpModelForTests.resx">
+      <DependentUpon>201910041503036_CreateThreeBackUpModelForTests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910041859479_Removetb_BackUpTests.resx">
+      <DependentUpon>201910041859479_Removetb_BackUpTests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910051536391_AddNationIDToPatientModel.resx">
+      <DependentUpon>201910051536391_AddNationIDToPatientModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910061051006_RemoveAdminModelAddUserRolesInUserModel.resx">
+      <DependentUpon>201910061051006_RemoveAdminModelAddUserRolesInUserModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910061212392_RemoveUserRoles.resx">
+      <DependentUpon>201910061212392_RemoveUserRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910261152221_CreateRequestTable.resx">
+      <DependentUpon>201910261152221_CreateRequestTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910261513292_RequestsTypes.resx">
+      <DependentUpon>201910261513292_RequestsTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910261647103_RemoveIdDoneField.resx">
+      <DependentUpon>201910261647103_RemoveIdDoneField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910301459455_CreateBackUpRequestsSystem.resx">
+      <DependentUpon>201910301459455_CreateBackUpRequestsSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910301519214_EditRequestsbackUpTable.resx">
+      <DependentUpon>201910301519214_EditRequestsbackUpTable.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51588</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44368/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

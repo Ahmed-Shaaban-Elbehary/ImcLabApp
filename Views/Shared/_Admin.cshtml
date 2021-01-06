@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المركز الطبي العالمي | @ViewBag.Title</title>
+    <link rel="icon" type="image/png" sizes="96x96" href="~/Content/favicon/favicon-96x96.png">
+    <link href="https://fonts.googleapis.com/css?family=Almarai:400,700&display=swap" rel="stylesheet">
+    <link href="~/Content/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet" />
+
+    @Styles.Render("~/bundles/css")
+    @Styles.Render("~/bundles/alertfiyCss")
+    @RenderSection("Styles", required: false)
+</head>
+<body dir="rtl" style="text-align:right">
+    <nav dir="ltr" class="navbar navbar-expand-md navbar-dark bg-primary sticky-top">
+        <div class="container-fluid">
+            <div class="navbar-brand">
+                <img src="~/images/IMC.png" width="60" height="57" class="d-inline-block align-top" alt="logo image">
+            </div><span class="text-light font-weight-bold">@Session["uName"] أهلاً </span>
+
+            <div dir="rtl" class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        @Html.ActionLink("الصحفة الرئيسية", "Index", "adminPanel", new { }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            أرشيف التقارير
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="text-align:right">
+                            @Html.ActionLink("المعامل", "getBackUpTests", "Lab_BackUp", new { }, new { @class = "dropdown-item" })
+                            @Html.ActionLink("الإشاعات", "getBackUpTests", "Radios_BackUp", new { }, new { @class = "dropdown-item" })
+                            @Html.ActionLink("الأورام", "getBackUpTests", "Tumors_BackUp", new { }, new { @class = "dropdown-item" })
+                        </div>
+                    </li>
+                    @*<li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            أرشيف الطلبات
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="text-align:right">
+                            @Html.ActionLink("المعامل", "lbReqestBackup", "RequstsBackUp", new { }, new { @class = "dropdown-item" })
+                            @Html.ActionLink("الإشاعات", "rdReqestBackup", "RequstsBackUp", new { }, new { @class = "dropdown-item" })
+                            @Html.ActionLink("الأورام", "trReqestBackup", "RequstsBackUp", new { }, new { @class = "dropdown-item" })
+                        </div>
+                    </li>*@
+                    <li class="nav-item">
+                        @Html.ActionLink("المرضى", "Patients", "adminPanel", new { }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("الخروج", "Logout", "login", null, new { @class = "nav-link " })
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class=" container-fluid body-content" style="height:79.9vh">
+        @RenderBody()
+    </div>
+    @{
+        Html.RenderPartial("_Footer");
+    }
+    @Scripts.Render("~/bundles/jQuery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Content/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    @Scripts.Render("~/bundles/notify")
+    @Scripts.Render("~/bundles/alertfiyJs")
+    <script type="text/javascript">
+        alertify.defaults.glossary.title = 'تأكيد ';
+        alertify.defaults.glossary.ok = 'نعم';
+        alertify.defaults.glossary.cancel = 'لا';
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

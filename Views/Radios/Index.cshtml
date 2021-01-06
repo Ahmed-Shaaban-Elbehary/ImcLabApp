@@ -1,0 +1,155 @@
+﻿@{
+    if (@Session["uId"] == null)
+    {
+        Response.Redirect("/Login/login");
+    }
+    ViewBag.BaseTitle = "الأشعاعات";
+    ViewBag.Title = "الصفحة الرئيسية";
+    Layout = "~/Views/Shared/_Rad.cshtml";
+}
+
+@section Styles{
+
+    <style>
+
+        div.dataTables_wrapper div.dataTables_filter input {
+            margin-left: 0.5em;
+            display: inline-block;
+            width: 100%;
+            margin-right: 10px;
+        }
+
+        .ui-dialog .ui-dialog-titlebar {
+            margin-bottom: 20px;
+        }
+
+        .ui-button-icon-space::after {
+            display: none;
+        }
+
+        section .patientTableData {
+            padding-bottom: 30px;
+            z-index: -1000;
+        }
+
+        .dataTables_length {
+            display: none;
+        }
+
+        #patientsTable_info {
+            padding-top: 0px !important;
+        }
+    </style>
+
+}
+<section class="patientTableData" dir="rtl">
+    <a class="btn btn-success" style="margin-bottom:20px; color:#fff;" onclick="PopupForm('@Url.Action("AddOrEdit","Radios")')"><i class="icons-btn ion-plus-round"></i> إضافة مريض جديد</a>
+    <table id="patientsTable" class="table table-bordered" width="100%">
+        <thead>
+            <tr>
+                <th>الرقم الطبي</th>
+                <th>الرقم القومي - الباسبور</th>
+                <th>الإسم</th>
+                <th>رقم الهاتف</th>
+                <th> </th>
+            </tr>
+        </thead>
+    </table>
+</section>
+
+
+@section Scripts{
+    <script>
+        var Popup, dateTable;
+        $(document).ready(function () {
+            dateTable = $('#patientsTable').DataTable({
+                responsive: true,
+                "ajax": {
+                    "url": "/Labs/GetPatients",
+                    "type": "GET",
+                    "datatype": "JSON",
+                },
+                "columns": [
+                    { "data": "medicalNumber" },
+                    { "data": "NationalID" },
+                    { "data": "userName" },
+                    { "data": "phoneNumber" },
+                    {
+                        "data": "Id", "render": function (res) {
+                            return "<a style='margin-left:5px; color:#fff;' class='btn btn-warning btn-sm' onclick = PopupForm('@Url.Action("AddOrEdit","Radios")/" + res + "')><i class='icons-btn ion-edit'></i>تعديل</a><a class='btn btn-primary btn-sm' onclick = Profile(" + res + ") style=color:#fff;'><i class='icons-btn ion-upload' aria-hidden='true'></i>رفع </a>"
+                        },
+                        "orderable": false,
+                        "searchable": false,
+                        "width": "220px"
+                    }
+                ],
+                "language": {
+                    "emptyTable": "هذا الجدول لا يحتوى على أي مرضى, من فضل إضغط على *إضافة مريض جديد* ",
+                    "search": " البحث : ",
+                    "searchPlaceholder": "ابحث عن مريض",
+                    "paginate": { "previous": "الصحفة السابقة", "next": "الصفحة التالية", },
+                    "info": "إظهار _START_ إلى _END_ من _TOTAL_ مرضى",
+                    "zeroRecords": "هذ البحث غير متطابق ",
+                    "infoEmpty": "إظهار 0 إلى 0 من 0 مرضى",
+                    "infoFiltered": "",
+                    "lengthMenu": " إظهار  _MENU_"
+                },
+                "autoWidth": true
+            });
+        });
+
+
+        function PopupForm(url) {
+            var formDiv = $("<div/>");
+            $.get(url)
+                .done(function (res) {
+                    formDiv.html(res);
+
+                    Popup = formDiv.dialog({
+                        autoOpen: true,
+                        resizable: false,
+                        title: "أضف مريض جديد",
+                        width: 500,
+                        height: 610,
+                        close: function () {
+                            Popup.dialog('destroy').remove()
+                        }
+                    });
+                })
+        }
+
+
+        function SubmitForm(form) {
+            $.validator.unobtrusive.parse(form);
+
+            if ($(form).valid()) {
+
+                $.ajax({
+                    type: "POST",
+                    url: form.action,
+                    data: $(form).serialize(),
+                    success: function (res) {
+                        if (res.success) {
+                            Popup.dialog("close");
+                            dateTable.ajax.reload();
+
+                            $.notify(res.message, {
+                                globalPosition: "top center",
+                                className: "success"
+                            });
+                        }
+                    }
+                });
+
+            }
+            return false;
+        }
+
+        function Profile(P_Id) {
+            var url = '@Url.Action("patientProfile", "Radios")/' + P_Id ;
+            window.location.href = url;
+
+            }
+    </script>
+
+}

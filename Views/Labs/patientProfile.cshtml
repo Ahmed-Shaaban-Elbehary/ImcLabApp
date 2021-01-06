@@ -1,0 +1,151 @@
+﻿
+@{
+    if (@Session["uId"] == null)
+    {
+        Response.Redirect("/Login/login");
+    }
+    ViewBag.Title = "المعامل";
+    Layout = "~/Views/Shared/_Lab.cshtml";
+}
+
+@section Styles{
+
+    <style>
+        .Pcard {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+
+            .Pcard:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
+
+        .Pcontainer {
+            padding: 2px 16px;
+        }
+    </style>
+
+}
+@section Scripts{
+    <script>
+        var patientId;
+        var url = window.location.pathname;
+        var id = url.substring(url.lastIndexOf('/') + 1);
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("getPatientById","Labs")",
+                data: { id },
+                success: function (res) {
+                    patientId = res.Id;
+                    $("#userName").append(res.userName);
+                    $("#medicalNumber").append(res.medicalNumber);
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetPatientResult","Labs")",
+                data: { id },
+                success: function (response) {
+                    $.each(response, function (k, v) {
+                        $("#myTbody").append(`<tr id="rowId-` + v.Id + `">
+                                    <td>
+                                    <a class = "icons ion-trash-a text-light" onclick="Delete(fileId = ` + v.Id + ` ,FileName ='`+ v.Name +`')"></a>
+                                    </td>
+                                    <td>` + v.testName + `</td>
+                                    <td>` + v.Datetime + `</td>
+                                    <td class="text-center">
+                                        <a class ="text-light pl-3" href="/labs/Reader?FileName=`+ v.Name +`" target="_blank"><i class="ion-ios-book-outline"></i> قراءة</a>
+                                        <a class = "text-light" href="/labs/Downloader?FileName=`+ v.Name +`" ><i class="ion-ios-download-outline"></i> تحميل </a>
+                                    </td>
+                            </tr>`
+                        );
+                    });
+                }
+            });
+
+            $("#medicalNumberSearch").on("keyup", function() {
+                var value = $(this).val();
+                $("#myTbody tr").filter(function() {
+                  $(this).toggle($(this).text().indexOf(value) > -1)
+                });
+            });
+
+        });
+
+        function Delete(fileId, FileName) {
+            alertify.confirm("هل تريد حذف هذا التقرير ؟", function (e) {
+                if (e) {
+                    $.ajax({
+                        url: "/labs/Deleter",
+                        data: {
+                            fileId: fileId,
+                            FileName: FileName
+                        },
+                        contentType:"application/json",
+                        success: function (res) {
+                            if (res == "تم الحذف بنجاح") {
+                                $("#rowId-" + fileId).remove();
+                                $.notify("تم الحذف", { position:"top center", className: "success" } );
+                            } else {
+                                 $.notify("هذا التقرير غير متاح", { position:"top center", className: "warn" });
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+    </script>
+}
+<div dir="rtl" class="jumbotron p-0 pr-4 pt-1 pb-1">
+    <h3>
+        <strong id="userName" style="font-size:40px;"></strong>
+        <br />
+    </h3>
+    <p class="lead">
+        <span id="medicalNumber">رقم طبي : </span>
+    </p>
+    <hr class="my-4">
+
+    <div class="col-md-6">
+        <h3>
+            <strong style="color:#c0392b">@ViewBag.error</strong>
+            <strong style="color:#27ae60">@ViewBag.success</strong>
+        </h3>
+    </div>
+    <div class="col-md-6">
+        @using (Html.BeginForm("uploadFile", "Labs", new { Id = @ViewBag.patientId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="form-group">
+                <label>أدخل إسم التقرير</label>
+                <input type="text" class="form-control" name="testName" />
+            </div>
+            <div class="form-group">
+                <label>أختر تقرير من جهازك</label>
+                <input id="File" type="file" class="form-control-file" name="upFile" accept="application/pdf">
+            </div>
+            <input class="btn btn-outline-primary" type="submit" name="submit" value="رفع" />
+        }
+    </div>
+</div>
+<hr class="my-4">
+
+<div class="p-4">
+    <h4 class="text-center">قائمة التقارير</h4>
+    
+</div>
+<table id="fileTable" class="table table-primary table-striped text-center" style="padding-bottom: 100px">
+    <thead>
+        <tr>
+            <th scope="col">  </th>
+            <th scope="col">إسم الملف</th>
+            <th scope="col">التاريخ</th>
+            <th scope="col"> 
+                @Html.TextBox("medicalNumberSearch", "", new { @class = "form-control w-50 m-auto text-center", placeholder = "بحث", type = "text" })
+            </th>
+        </tr>
+    </thead>
+    <tbody id="myTbody">
+    </tbody>
+</table>

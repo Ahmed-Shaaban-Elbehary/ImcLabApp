@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "الطلبات";
+    ViewBag.BaseTitle = "المعامل";
+    Layout = "~/Views/Shared/_Tur.cshtml";
+}
+
+<div class="jumbotron p-2 pb-0">
+    <div class="container">
+        <h1>الطلبات</h1>
+        <p class="lead">
+            <i class="ion-alert-circled text-warning"></i> هذه الطلبات مرسلة من المريض في حالة الضغط على زر "تم" سيتم مسح الطلب لديك ويحفظ في ارشيف إدارة التطبيق
+        </p>
+    </div>
+</div>
+@section Scripts{
+    <script>
+
+        $(function () {
+            $.ajax({
+                url: "@Url.Action("Getlb_Requests","Tumors")",
+                type: "GET",
+                Data: {},
+                success: function (response) {
+                    $.each(response, function (k, v) {
+                        $("#myTbody").append(`<tr id="row`+v.Id+`">
+                                           <td>` + v.medicalNumber + `</td>
+                                           <td>` + v.nationalId + `</td>
+                                           <td>` + v.dateTime + `</td>
+                                           <td scope="col"><button class="btn btn-sm btn-success" onclick="Delete(`+v.Id+`)"> تـــم </button></td>
+                                    </tr>`);
+                    });
+                }
+            });
+
+            $("#medicalNumberSearch").on("keyup", function() {
+                var value = $(this).val();
+                $("#myTbody tr").filter(function() {
+                  $(this).toggle($(this).text().indexOf(value) > -1)
+                });
+            });
+
+        });
+
+        function Delete(Id) {
+            alertify.confirm(" هل تم تنفيذ الطلب ؟ ", function (e) {
+                if (e) {
+                    $.ajax({
+                        url: "/Labs/DeleteRequest?id=" + Id,
+                        type: "GET",
+                        success: function (respose) {
+                            $("#row" + Id).remove();
+                            $.notify("تم الحذف بنجاح", "success");
+                        }
+                    });
+                };
+            });
+        };
+
+
+
+    </script>
+}
+<div class="pb-4">
+    @Html.TextBox("medicalNumberSearch", "", new { @class = "form-control col-4 m-auto text-center", placeholder = "بحث بالرقم الطبي", type = "number" })
+
+</div>
+<table id="myTable" class="table .thead-light text-center col-8 m-auto">
+    <thead>
+        <tr>
+            <th scope="col">الرقم الطبي</th>
+            <th scope="col">الرقم القومي</th>
+            <th scope="col">الوقت / التاريخ</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="myTbody" class="text-center">
+    </tbody>
+</table>

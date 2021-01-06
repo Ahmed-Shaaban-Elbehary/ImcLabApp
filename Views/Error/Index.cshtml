@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خطأ تحميل الصفحة</title>
+    <link rel="icon" type="image/png" sizes="96x96" href="~/Content/favicon/favicon-96x96.png">
+    <link href="https://fonts.googleapis.com/css?family=Tajawal:400,700,900&display=swap" rel="stylesheet">
+    <link href="~/Content/Error404.css" rel="stylesheet" />
+    <style>
+        * {
+            font-size: 20px;
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 700;
+            line-height: 1.7;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color:#808080;
+        }
+        .error-contents{
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%);
+            text-align:center;
+            color:#fff;
+        }
+        .error-contents_header{
+            font-size:60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-contents">
+        <h1 class="error-contents_header"> هذه الصفحة غير متوفرة</h1>
+    </div>
+</body>
+</html>

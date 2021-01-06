@@ -1,0 +1,125 @@
+﻿
+@{
+    if (@Session["uId"] == null)
+    {
+        Response.Redirect("/Login/login");
+    }
+    ViewBag.Title = "الصفحة الرئيسية";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+@section Styles{
+    @*<link href="~/dataTable/dataTables.bootstrap4.min.css" rel="stylesheet" />*@
+
+    <style>
+
+        div.dataTables_wrapper div.dataTables_filter input {
+            margin-left: 0.5em;
+            display: inline-block;
+            width: 100%;
+            margin-right: 10px;
+        }
+
+        .ui-dialog .ui-dialog-titlebar {
+            margin-bottom: 20px;
+        }
+
+        .ui-button-icon-space::after {
+            display: none;
+        }
+
+        section .patientTableData {
+            padding-bottom: 30px;
+            z-index: -1000;
+        }
+
+        .dataTables_length {
+            display: none;
+        }
+
+        #patientsTable_info {
+            padding-top: 0px !important;
+        }
+    </style>
+
+}
+<section class="patientTableData" dir="rtl">
+    <table id="patientsTable" class="table table-bordered" width="100%">
+        <thead>
+            <tr>
+                <th>الرقم الطبي</th>
+                <th>الرقم القومي - الباسبور</th>
+                <th>الإسم</th>
+                <th>رقم الهاتف</th>
+                <th> </th>
+            </tr>
+        </thead>
+    </table>
+</section>
+
+
+@section Scripts{
+
+    @*<script src="~/dataTable/jquery.dataTables.min.js"></script>
+    <script src="~/dataTable/dataTables.bootstrap4.min.js"></script>*@
+    <script>
+        var Popup, dateTable;
+        $(document).ready(function () {
+            dateTable = $('#patientsTable').DataTable({
+                responsive: true,
+                "ajax": {
+                    "url": "/Labs/GetPatients",
+                    "type": "GET",
+                    "datatype": "JSON",
+                },
+                "columns": [
+                    { "data": "medicalNumber" },
+                    { "data": "NationalID" },
+                    { "data": "userName" },
+                    { "data": "phoneNumber" },
+                    {
+                        "data": "Id", "render": function (res) {
+                            return "<a class='btn btn-danger btn-sm' onclick = Delete(" + res + ") style='color:#fff'><i class='ion-ios-trash-outline'></i> مسح </a>"
+                        },
+                        "orderable": false,
+                        "searchable": false,
+                        "width": "220px"
+                    }
+                ],
+                "language": {
+                    "emptyTable": "هذا الجدول لا يحتوى على أي مرضى, من فضل إضغط على *إضافة مريض جديد* ",
+                    "search": " البحث : ",
+                    "searchPlaceholder": "ابحث عن مريض",
+                    "paginate": { "previous": "الصحفة السابقة", "next": "الصفحة التالية", },
+                    "info": "إظهار _START_ إلى _END_ من _TOTAL_ مرضى",
+                    "zeroRecords": "هذ البحث غير متطابق ",
+                    "infoEmpty": "إظهار 0 إلى 0 من 0 مرضى",
+                    "infoFiltered": "",
+                    "lengthMenu": " إظهار  _MENU_"
+                },
+                "autoWidth": true
+            });
+        });
+
+        function Delete(id) {
+            if (confirm('هل انت متأكد من مسح هذا المريض')) {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("DeletePatient", "adminPanel")/' + id,
+                    success: function (res) {
+                        if (res.success) {
+                            dateTable.ajax.reload();
+
+                            $.notify(res.message, {
+                                globalPosition: "top center",
+                                className: "success"
+                            });
+                        }
+                    }
+                });
+            }
+        }
+     </script>
+
+}
+

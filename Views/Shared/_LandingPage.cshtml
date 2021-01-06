@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+
+<html lang="ar">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> المركز الطبي العالمي | دخــول</title>
+    <link rel="icon" type="image/png" sizes="96x96" href="~/Content/favicon/favicon-96x96.png">
+    <link href="https://fonts.googleapis.com/css?family=Almarai:400,700&display=swap" rel="stylesheet">
+    @Styles.Render("~/bundles/css")
+    <style>
+        body{
+            overflow:hidden;
+        }
+    </style>
+</head>
+<body dir="rtl">
+    <div>
+        @RenderBody()
+    </div>
+    @{
+        Html.RenderPartial("_Footer");
+    }
+    @Scripts.Render("~/bundles/jQuery");
+    @Scripts.Render("~/bundles/bootstrap");
+</body>
+</html>

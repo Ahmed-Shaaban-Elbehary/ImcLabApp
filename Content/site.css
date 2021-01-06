@@ -1,0 +1,155 @@
+﻿* {
+    font-size: 20px;
+    font-family: 'Almarai', sans-serif !important;
+    font-weight: 400;
+    line-height: 1.7;
+}
+.container-fluid {
+    width: 90% !important
+}
+
+.btn-primary {
+    background-color: #2980b9;
+}
+
+ul {
+    padding: 0 !important;
+}
+
+.login {
+    height: 100vh;
+    background: url(/images/A-SJ-min.jpg);
+    background-position: bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+
+.login_form {
+    background-color: #fff;
+    padding: 50px;
+    box-shadow: 0px 10px 14px 0px rgba(0,0,0,0.4);
+    border-radius: 5px;
+    width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+    .login_form .icon {
+        text-align: center;
+    }
+
+        .login_form .icon img {
+            height: 150px;
+        }
+
+.form-check-input {
+    margin-top: 0.6rem !important;
+    color: #457fca;
+}
+
+.field-validation-error {
+    color: #c0392b;
+}
+
+nav {
+    margin-bottom: 40px;
+}
+
+.nav-item{
+    margin-right:10px;
+}
+
+.navbar {
+    padding: 0.5rem 0.5rem !important;
+}
+
+input.input-validation-error {
+    border: 1px solid #c0392b;
+}
+
+
+i{
+    padding-left:2.5px;
+}
+
+.icons{
+    font-size: 24px;
+    vertical-align:baseline;
+}
+
+.icons-btn{
+    font-size : 14px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.page-header {
+    padding-bottom: 30px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff !important;
+    transition: all 0.2s;
+}
+
+    .navbar-dark .navbar-nav .nav-link:hover {
+        background-color: #fff !important;
+        color: #158CBA !important;
+    }
+
+.text-light {
+    color: #fff !important;
+}
+
+#Setting-Link {
+    color: #158CBA;
+}
+
+.patientTableData {
+    padding-bottom: 100px;
+}
+#fileTable, .table{
+    margin-bottom:100px;
+}
+.page-item.active .page-link {
+    z-index: 0;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    color: #fff;
+    padding: 10px 0px;
+    background-color: #2980b9;
+}
+
+    footer a {
+        float: left;
+        margin-top: 5px;
+        color: #fff;
+    }
+
+    footer p {
+        text-align: center;
+        margin-top: 5px;
+    }
+
+/* HANDEL ERROR */
+#medicalNumber-error, #NationalID-error, #userName-error, #phoneNumber-error {
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 0.5rem !important;
+}
