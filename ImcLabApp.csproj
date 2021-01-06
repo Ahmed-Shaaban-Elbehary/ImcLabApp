@@ -234,6 +234,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Languages\LoginMessages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoginMessages.resx</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201909181658324_InitialDataBase.cs" />
     <Compile Include="Migrations\201909181658324_InitialDataBase.Designer.cs">
       <DependentUpon>201909181658324_InitialDataBase.cs</DependentUpon>
@@ -388,6 +393,10 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Languages\LoginMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LoginMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909181658324_InitialDataBase.resx">
       <DependentUpon>201909181658324_InitialDataBase.cs</DependentUpon>
     </EmbeddedResource>

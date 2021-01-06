@@ -1,4 +1,5 @@
-﻿using ImcLabApp.Models;
+﻿using ImcLabApp.Languages;
+using ImcLabApp.Models;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -49,13 +50,13 @@ namespace ImcLabApp.Controllers
                 }
                 else
                 {
-                    ViewBag.errorMessage = "هذا المستخدم غير موجود";
+                    ViewBag.errorMessage = LoginMessages.errorMessageUserNotFound;
                     return View("login", users);
                 }
             }
             else
             {
-                ViewBag.errorMessage = "إسم المستخدم او الرقم السري خطأ";
+                ViewBag.errorMessage = LoginMessages.errorMessageUserNameOrPasswordWrong;
                 return View("login", users);
             }
         }
