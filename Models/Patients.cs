@@ -11,6 +11,7 @@ namespace ImcLabApp.Models
         public int Id { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "من فضلك أدخل الرقم الطبي")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "من فضلك ادخل أرقام فقط")]
         [DisplayName("الرقم الطبي")]
         public string medicalNumber { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "من فضلك أدخل الرقم القومي أو الباسبور")]
@@ -24,6 +25,7 @@ namespace ImcLabApp.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "من فضلك أدخل رقم الموبيل")]
         [DisplayName("رقم هاتف المحمول")]
         [StringLength(20, ErrorMessage = "رقم المحمول لا يمكن أن يقل عن 20 رقم ")]
+        [Phone]
         [DataType(DataType.PhoneNumber)]
         public string phoneNumber { get; set; }
         public virtual ICollection<Labs> Tests { get; set; }

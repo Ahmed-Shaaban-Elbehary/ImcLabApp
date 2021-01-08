@@ -4,6 +4,7 @@ namespace ImcLabApp.Models
 {
     public class PatientsRegisteration
     {
+        [Key]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "من فضلك ادخل اسم المستخدم")]

@@ -333,6 +333,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
+    <Compile Include="Models\Departments.cs" />
     <Compile Include="Models\ErrorMessages.cs" />
     <Compile Include="Models\Patients.cs" />
     <Compile Include="Models\PatientsRegisteration.cs" />
@@ -373,11 +374,11 @@
     <Content Include="Views\Shared\_LandingPage.cshtml" />
     <Content Include="Views\Login\login.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
-    <None Include="Properties\PublishProfiles\publishProfile.pubxml" />
     <Content Include="Views\Lab_BackUp\getBackUpTests.cshtml" />
     <Content Include="Views\Shared\_Lab.cshtml" />
     <Content Include="Views\Shared\_Rad.cshtml" />
     <Content Include="Views\Shared\_Tur.cshtml" />
+    <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
